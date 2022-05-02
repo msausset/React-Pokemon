@@ -15,6 +15,7 @@ export default function LePokemon() {
   return (
     <div>
       <img
+        alt=""
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonChosen.id}.png`}
       />
       {pokemonChosen.types &&

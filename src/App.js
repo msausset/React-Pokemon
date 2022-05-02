@@ -6,18 +6,14 @@ import LePokemon from "./components/LePokemon";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/pokemon" element={<Pokemon />} />
-            <Route path="/le-pokemon/:pokemon" element={<LePokemon />} />
-          </Routes>
-        </BrowserRouter>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pokemon" element={<Pokemon />} />
+        <Route path="/le-pokemon/:pokemon" element={<LePokemon />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
