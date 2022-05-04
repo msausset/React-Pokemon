@@ -17,7 +17,6 @@ export default function DescriptionPokemon() {
   // Vérification dans le tableau de la langue de traduction
 
   let description = "";
-  console.log(descriptionPokemon?.flavor_text_entries?.length);
   if (descriptionPokemon?.flavor_text_entries?.length > 0) {
     if (descriptionPokemon?.flavor_text_entries[24].language.name == "ko") {
       description = descriptionPokemon?.flavor_text_entries[25]?.flavor_text;
