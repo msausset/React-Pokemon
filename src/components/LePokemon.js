@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Translation from "../translations.json";
+import TranslationNames from "../translationsNames.json";
 import DescriptionPokemon from "./DescriptionPokemon";
+import InfosPokemon from "./InfosPokemon";
 
 export default function LePokemon() {
   const params = useParams();
@@ -34,15 +35,22 @@ export default function LePokemon() {
     <div className="bg-white bg-[url('../src/images/container_bg.png')] m-auto w-2/3 min-h-screen">
       <div className="bg-white w-2/3 m-auto py-5">
         <h1 className="text-center capitalize font-bold text-xl">
-          {Translation[pokemonChosen?.id - 1]?.french} {num}
+          {TranslationNames[pokemonChosen?.id - 1]?.french} {num}
         </h1>
         <div className="grid gap-4 grid-cols-2 pt-10">
-          <img
-            className="bg-slate-100 ml-2 rounded-lg"
-            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${img}.png`}
-            alt=""
-          />
-          <DescriptionPokemon />
+          <div className="row-span-2">
+            <img
+              className="bg-slate-100 ml-2 rounded-lg"
+              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${img}.png`}
+              alt=""
+            />
+          </div>
+          <div className="justify-items-center">
+            <DescriptionPokemon />
+          </div>
+          <div>
+            <InfosPokemon />
+          </div>
         </div>
       </div>
     </div>

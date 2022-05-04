@@ -17,6 +17,14 @@ export default function DescriptionPokemon() {
   // Vérification dans le tableau de la langue de traduction
 
   let description = "";
+<<<<<<< HEAD
+=======
+
+
+// Affichage de la description française (soit index 25 soit 24 du tableau)  
+// Si le tableau n'est pas vide
+
+>>>>>>> 44415fa50896d04e1c5ede77f1cf803a385fdc15
   if (descriptionPokemon?.flavor_text_entries?.length > 0) {
     if (descriptionPokemon?.flavor_text_entries[24].language.name == "ko") {
       description = descriptionPokemon?.flavor_text_entries[25]?.flavor_text;
@@ -25,5 +33,5 @@ export default function DescriptionPokemon() {
     }
   }
 
-  return <p className="text-sm flex">{description}</p>;
+  return <p className="text-xl">{description}</p>;
 }

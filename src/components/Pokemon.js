@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Translation from "../translations.json";
+import TranslationNames from "../translationsNames.json";
 
 export default function Pokemon() {
-  console.log(Translation);
 
   // Requête sur l'API Pokéapi pour récuperer les pokémons
 
@@ -52,7 +51,7 @@ export default function Pokemon() {
                       alt=""
                       className="m-auto"
                     />
-                    <p className="capitalize">{Translation[i].french}</p>
+                    <p className="capitalize">{TranslationNames[i].french}</p>
                   </div>
                 </Link>
               );
