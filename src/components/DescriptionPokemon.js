@@ -14,12 +14,6 @@ export default function DescriptionPokemon() {
       .catch((err) => console.error(err));
   }, []);
 
-  console.log(descriptionPokemon.flavor_text_entries);
-
-  console.log("je suis " + params.pokemon);
-
-  /*   console.log(pokemonChosen.flavor_text_entries[24]);
-   */
   // Vérification dans le tableau de la langue de traduction
 
   let description = "";

@@ -10,50 +10,31 @@ export default function LePokemon() {
   // Plusieurs fetchs
 
   useEffect(() => {
-    Promise.all([
-      fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokemon}`).then(
-        (response) => response.json()
-      ),
-      fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.pokemon}`).then(
-        (response) => response.json()
-      ),
-    ])
+    fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokemon}`)
+      .then((response) => response.json())
       .then((result) => setPokemonChosen(result))
       .catch((err) => console.error(err));
   }, []);
 
-  // Vérification dans le tableau de la langue de traduction
-
-  let description = "";
-  if (pokemonChosen[1]?.flavor_text_entries[24].language.name == "ko") {
-    description = pokemonChosen[1]?.flavor_text_entries[25]?.flavor_text;
-  } else {
-    description = pokemonChosen[1]?.flavor_text_entries[24]?.flavor_text;
-  }
-
-  /*   console.log(pokemonChosen[1]?.flavor_text_entries[24]);
-   */
   let num = "";
   let img = "";
 
-  if (pokemonChosen[0]?.id < 9) {
-    num = `No.00${pokemonChosen[0]?.id}`;
-    img = `00${pokemonChosen[0]?.id}`;
-  } else if (pokemonChosen[0]?.id < 99) {
-    num = `No.0${pokemonChosen[0]?.id}`;
-    img = `0${pokemonChosen[0]?.id}`;
+  if (pokemonChosen?.id < 9) {
+    num = `No.00${pokemonChosen?.id}`;
+    img = `00${pokemonChosen?.id}`;
+  } else if (pokemonChosen?.id < 99) {
+    num = `No.0${pokemonChosen?.id}`;
+    img = `0${pokemonChosen?.id}`;
   } else {
-    num = `No.${pokemonChosen[0]?.id}`;
-    img = `${pokemonChosen[0]?.id}`;
+    num = `No.${pokemonChosen?.id}`;
+    img = `${pokemonChosen?.id}`;
   }
 
-  /*   console.log(pokemonChosen[1]?.flavor_text_entries[24].language.name);
-   */
   return (
     <div className="bg-white bg-[url('../src/images/container_bg.png')] m-auto w-2/3 min-h-screen">
       <div className="bg-white w-2/3 m-auto py-5">
         <h1 className="text-center capitalize font-bold text-xl">
-          {Translation[pokemonChosen[0]?.id - 1]?.french} {num}
+          {Translation[pokemonChosen?.id - 1]?.french} {num}
         </h1>
         <div className="grid gap-4 grid-cols-2 pt-10">
           <img
@@ -62,7 +43,6 @@ export default function LePokemon() {
             alt=""
           />
           <DescriptionPokemon />
-          <p className="text-sm flex">{description}</p>
         </div>
       </div>
     </div>
