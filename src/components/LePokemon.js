@@ -7,6 +7,7 @@ import InfosPokemon from "./InfosPokemon";
 export default function LePokemon() {
   const params = useParams();
   const [pokemonChosen, setPokemonChosen] = useState({});
+  const [index, setIndex] = useState();
 
   // Plusieurs fetchs
 
@@ -17,39 +18,35 @@ export default function LePokemon() {
       .catch((err) => console.error(err));
   }, []);
 
-  let num = "";
-  let img = "";
-
-  if (pokemonChosen?.id < 9) {
-    num = `No.00${pokemonChosen?.id}`;
-    img = `00${pokemonChosen?.id}`;
-  } else if (pokemonChosen?.id < 99) {
-    num = `No.0${pokemonChosen?.id}`;
-    img = `0${pokemonChosen?.id}`;
-  } else {
-    num = `No.${pokemonChosen?.id}`;
-    img = `${pokemonChosen?.id}`;
-  }
+  useEffect(() => {
+    if (pokemonChosen?.id < 9) {
+      setIndex(`00${pokemonChosen?.id + 1}`);
+    } else if (pokemonChosen?.id < 99) {
+      setIndex(`0${pokemonChosen?.id + 1}`);
+    } else {
+      setIndex(pokemonChosen?.id + 1);
+    }
+  }, [pokemonChosen]);
 
   return (
-    <div className="bg-white bg-[url('../src/images/container_bg.png')] m-auto w-2/3 min-h-screen">
-      <div className="bg-white w-2/3 m-auto py-5">
+    <div className="bg-white bg-[url('../src/images/container_bg.png')] m-auto w-[55vw] min-h-screen">
+      <div className="bg-white w-[50vw] m-auto py-5">
         <h1 className="text-center capitalize font-bold text-xl">
-          {TranslationNames[pokemonChosen?.id - 1]?.french} {num}
+          {TranslationNames[index - 1]?.french} No.{index}
         </h1>
         <div className="grid gap-4 grid-cols-2 pt-10">
-          <div className="row-span-2">
+          <div className="row-span-2 bg-slate-200 rounded ml-2 border-red">
             <img
-              className="bg-slate-100 ml-2 rounded-lg"
-              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${img}.png`}
+              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${index}.png`}
               alt=""
+              className="m-auto"
             />
           </div>
-          <div className="justify-items-center">
+          <div>
             <DescriptionPokemon />
           </div>
           <div>
-            <InfosPokemon />
+            <InfosPokemon pokemonChosen={pokemonChosen} />
           </div>
         </div>
       </div>
