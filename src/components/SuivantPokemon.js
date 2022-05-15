@@ -10,7 +10,7 @@ export default function SuivantPokemon({ pokemonChosen }) {
 
   useEffect(() => {
     setNextPokemon(Pokemons[indexPokemon]);
-  }, []);
+  }, [indexPokemon]);
 
   if (nextPokemon && nextPokemon.nom) {
     return (

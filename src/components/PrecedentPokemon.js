@@ -10,7 +10,7 @@ export default function PrecedentPokemon({ pokemonChosen }) {
 
   useEffect(() => {
     setPreviousPokemon(Pokemons[indexPokemon]);
-  }, []);
+  }, [indexPokemon]);
 
   if (previousPokemon && previousPokemon.nom) {
     return (

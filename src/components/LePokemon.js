@@ -31,11 +31,6 @@ export default function LePokemon() {
       <div className="bg-white w-[50vw] m-auto py-5">
         {/*  Pokémon suivant / précédent */}
 
-        {/*  <div className="border-blue flex mb-5">
-          <PrecedentPokemon pokemonChosen={pokemonChosen} />
-          <SuivantPokemon pokemonChosen={pokemonChosen} />
-        </div> */}
-
         <div className="flex mb-5 ">
           <div className="w-2/4 text-center bg-slate-400 mr-1 ml-1 rounded">
             <PrecedentPokemon pokemonChosen={pokemonChosen} />

@@ -23,6 +23,13 @@ export default function navbar() {
           <img alt="" className="w-4 h-4 inline" src={pokemon_2} />
           <p>Pokémon</p>
         </Link>
+        <Link
+          to="/filtre-pokemon"
+          className="rounded-full hover:underline hover:bg-yellow-600 hover:text-white ease-in duration-300 flex-auto"
+        >
+          <img alt="" className="w-4 h-4 inline" src={pokemon_2} />
+          <p>Filtre</p>
+        </Link>
       </div>
     </nav>
   );
