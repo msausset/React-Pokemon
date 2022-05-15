@@ -1,65 +1,99 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import TranslationAbilities from "../translationsAbilities.json";
+import React from "react";
+import man from "../images/man2.png";
+import woman from "../images/woman2.png";
 
 export default function InfosPokemon({ pokemonChosen }) {
-  const params = useParams();
-  const [infosPokemon, setInfosPokemon] = useState({});
-  const [category, setCategory] = useState();
-
-  // Plusieurs fetchs
-
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.pokemon}`)
-      .then((response) => response.json())
-      .then((result) => setInfosPokemon(result))
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    if (infosPokemon?.genera[3].genus.length > 0) {
-      setCategory(infosPokemon?.genera[3].genus.split(" ")[1]);
-    }
-  }, [infosPokemon]);
-
-  console.log(category);
-
-  // Découpe de la catégorie du Pokémon (API : Pokémon graine --> Affichage : Graine)
-  // Si tableau pas vide
-
   return (
     <div className="grid gap-4 grid-cols-2 bg-cyan-500 rounded-lg mr-3">
-      <span>
-        <p className="pl-5 pt-5 text-[1vw] font-bold text-white">Taille</p>
-        <p className="pl-5 text-[1.25vw] font-bold">
-          {pokemonChosen?.height / 10} m
-        </p>
-      </span>
-      <span>
-        <p className="pl-5 pt-5 text-[1vw] font-bold text-white">Catégorie</p>
-        <p className="pl-5 text-[1.25vw] font-bold">{category}</p>
-      </span>
-      <span>
-        <p className="pl-5 pt-5 text-[1vw] font-bold text-white	">Poids</p>
-        <p className="pl-5 pb-5 text-[1.25vw] font-bold">
-          {pokemonChosen?.weight / 10} kg
-        </p>
-      </span>
-      {/* div span */}
-      <span>
-        <p className="pl-5 pt-5 text-[1vw] font-bold text-white">Talent(s)</p>
-        <p className="pl-5 pb-5 text-[1.25vw] font-bold">
-          {infosPokemon[0]?.abilities.map((ability) => {
-            const result = TranslationAbilities.find((trans) => {
-              /* if (ability.ability.name === trans.english) {
-        abilityPokemon = abilityPokemon?.concat(`${trans.french} `);        
-      } */
-              return trans.english === ability.ability.name;
-            }).french;
-            return <div key={result}>{result}</div>;
+      <div className="flex flex-col">
+        <span className="pl-5 pb-2 pt-5 text-[1vw] font-bold text-white">
+          Taille
+        </span>
+        <span className="pl-5 text-[1.25vw] font-bold">
+          {/* Affichage taille Pokémon */}
+          {pokemonChosen.taille}
+        </span>
+      </div>
+      <div className="flex flex-col">
+        <span className="pl-5 pb-2 pt-5 text-[1vw] font-bold text-white">
+          Catégorie
+        </span>
+        <span className="pl-5 text-[1.25vw] font-bold">
+          {/* Affichage catégorie Pokémon */}
+          {pokemonChosen.categorie}
+        </span>
+      </div>
+      <div className="flex flex-col">
+        <span className="pl-5 pb-2 text-[1vw] font-bold text-white">Poids</span>
+        <span className="pl-5 text-[1.25vw] font-bold">
+          {/* Affichage poids Pokémon */}
+          {pokemonChosen.poids}
+        </span>
+      </div>
+      <div className="flex flex-col">
+        <span className="pl-5 pb-2 text-[1vw] font-bold text-white">
+          Talent(s)
+        </span>
+        <span className="pl-5 text-[1.25vw] font-bold">
+          {/* Affichage talents Pokémon */}
+          {pokemonChosen.talent.map((leTalent) => {
+            return <p key={leTalent.nom}>{leTalent.nom}</p>;
           })}
-        </p>
-      </span>
+        </span>
+      </div>
+      <div className="flex flex-col">
+        <span className="pl-5 pb-2 text-[1vw] font-bold text-white">Sexe</span>
+        <span className="pl-5 pb-5 text-[1.25vw] font-black">
+          {/* Affichage sexe Pokémon */}
+          {pokemonChosen.sexe.map((leSexe) => {
+            if (leSexe.male && leSexe.femelle && leSexe.male !== "Inconnu") {
+              return (
+                <div key={man} className="flex">
+                  <div className="basis-1/4">
+                    <img src={man} className="w-[1.5vw] h-[1.5vw]" alt="" />
+                  </div>
+                  <div key={woman} className="basis-1/4">
+                    <img src={woman} className="w-[1.5vw] h-[1.5vw]" alt="" />
+                  </div>
+                </div>
+              );
+            } else if (
+              leSexe.male &&
+              !leSexe.femelle &&
+              leSexe.male !== "Inconnu"
+            ) {
+              return (
+                <div key={man} className="flex">
+                  <div className="basis-1/4">
+                    <img src={man} className="w-[1.5vw] h-[1.5vw]" alt="" />
+                  </div>
+                </div>
+              );
+            } else if (
+              !leSexe.male &&
+              leSexe.femelle &&
+              leSexe.femelle !== "Inconnu"
+            ) {
+              return (
+                <div key={woman} className="flex">
+                  <div className="basis-1/4">
+                    <img src={woman} className="w-[1.5vw] h-[1.5vw]" alt="" />
+                  </div>
+                </div>
+              );
+            } else if (
+              leSexe.male === "Inconnu" &&
+              leSexe.femelle === "Inconnu"
+            ) {
+              return (
+                <div key="Inconnu" className="flex">
+                  <span className="basis-1/4">Inconnu</span>
+                </div>
+              );
+            }
+          })}
+        </span>
+      </div>
     </div>
   );
 }

@@ -1,53 +1,105 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import TranslationNames from "../translationsNames.json";
 import DescriptionPokemon from "./DescriptionPokemon";
 import InfosPokemon from "./InfosPokemon";
+import TypePokemon from "./TypePokemon";
+import FaiblessePokemon from "./FaiblessePokemon";
+import Pokemons from "../pokemons.json";
+import StatsPokemon from "./StatsPokemon";
+import EvolutionPokemon from "./EvolutionPokemon";
+import SuivantPokemon from "./SuivantPokemon";
+import PrecedentPokemon from "./PrecedentPokemon";
 
 export default function LePokemon() {
   const params = useParams();
-  const [pokemonChosen, setPokemonChosen] = useState({});
-  const [index, setIndex] = useState();
-
-  // Plusieurs fetchs
+  const [pokemonChosen, setPokemonChosen] = useState([]);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokemon}`)
-      .then((response) => response.json())
-      .then((result) => setPokemonChosen(result))
-      .catch((err) => console.error(err));
+    Pokemons.map((pokemon) => {
+      if (pokemon.nom === params.pokemon) setPokemonChosen(pokemon);
+    });
   }, []);
 
-  useEffect(() => {
-    if (pokemonChosen?.id < 9) {
-      setIndex(`00${pokemonChosen?.id + 1}`);
-    } else if (pokemonChosen?.id < 99) {
-      setIndex(`0${pokemonChosen?.id + 1}`);
-    } else {
-      setIndex(pokemonChosen?.id + 1);
-    }
-  }, [pokemonChosen]);
+  // Mettre fetch app.js
+
+  if (!pokemonChosen.nom) {
+    return <div className="h-[100vh] w-[100vw] bg-red-500">Loading...</div>;
+  }
 
   return (
     <div className="bg-white bg-[url('../src/images/container_bg.png')] m-auto w-[55vw] min-h-screen">
       <div className="bg-white w-[50vw] m-auto py-5">
-        <h1 className="text-center capitalize font-bold text-xl">
-          {TranslationNames[index - 1]?.french} No.{index}
+        {/*  Pokémon suivant / précédent */}
+
+        {/*  <div className="border-blue flex mb-5">
+          <PrecedentPokemon pokemonChosen={pokemonChosen} />
+          <SuivantPokemon pokemonChosen={pokemonChosen} />
+        </div> */}
+
+        <div className="flex mb-5 ">
+          <div className="w-2/4 text-center bg-slate-400 mr-1 ml-1 rounded">
+            <PrecedentPokemon pokemonChosen={pokemonChosen} />
+          </div>
+          <div className="w-2/4 text-center bg-slate-400 mr-1 ml-1 rounded">
+            <SuivantPokemon pokemonChosen={pokemonChosen} />
+          </div>
+        </div>
+
+        {/* Nom / ID Pokémon */}
+
+        <h1 className="text-center capitalize font-bold text-[1.5vw]">
+          {pokemonChosen.nom} No.{pokemonChosen.id}
         </h1>
+
+        {/* Grille de toutes infos Pokémon */}
+
         <div className="grid gap-4 grid-cols-2 pt-10">
           <div className="row-span-2 bg-slate-200 rounded ml-2 border-red">
+            {/* Image Pokémon */}
+
             <img
-              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${index}.png`}
+              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${pokemonChosen.id}.png`}
               alt=""
-              className="m-auto"
+              className="w-full"
             />
           </div>
+
+          {/* Description Pokémon */}
+
           <div>
-            <DescriptionPokemon />
+            <DescriptionPokemon pokemonChosen={pokemonChosen} />
           </div>
+
+          {/* Infos Pokémon (taille, poids, etc...) */}
+
           <div>
             <InfosPokemon pokemonChosen={pokemonChosen} />
           </div>
+
+          {/* Stats de base Pokémon */}
+
+          <div className="row-span-3">
+            <div className="ml-5 text-[1vw]">Stats de base</div>
+            <StatsPokemon pokemonChosen={pokemonChosen.stats} />
+          </div>
+
+          {/* Types Pokémon */}
+
+          <div>
+            <TypePokemon pokemonChosen={pokemonChosen} />
+          </div>
+
+          {/* Faiblesses Pokémon */}
+
+          <div>
+            <FaiblessePokemon pokemonChosen={pokemonChosen} />
+          </div>
+        </div>
+
+        {/* Evolution Pokémon */}
+
+        <div>
+          <EvolutionPokemon pokemonChosen={pokemonChosen.evolution} />
         </div>
       </div>
     </div>

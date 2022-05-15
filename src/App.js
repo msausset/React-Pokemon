@@ -3,8 +3,7 @@ import Pokemon from "./components/Pokemon";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import LePokemon from "./components/LePokemon";
-import DescriptionPokemon from "./components/DescriptionPokemon";
-import InfosPokemons from "./components/InfosPokemon"
+import EvolutionPokemon from "./components/EvolutionPokemon";
 
 function App() {
   return (
@@ -13,10 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pokemon" element={<Pokemon />} />
-        <Route path="/le-pokemon/:pokemon" element={<LePokemon />}>
-          <Route path="/le-pokemon/:pokemon" element={<DescriptionPokemon />} />
-          <Route path="/le-pokemon/:pokemon" element={<InfosPokemons />} />
-        </Route>
+        <Route path="/le-pokemon/:pokemon" element={<LePokemon />} />
       </Routes>
     </BrowserRouter>
   );

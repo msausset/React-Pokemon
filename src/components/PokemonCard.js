@@ -1,36 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import TranslationNames from "../translationsNames.json";
 
-const PokemonCard = ({ pokemon, i }) => {
-  const [index, setIndex] = useState();
-
-  useEffect(() => {
-    if (i < 9) {
-      setIndex(`00${i + 1}`);
-    } else if (i < 99) {
-      setIndex(`0${i + 1}`);
-    } else {
-      setIndex(i + 1);
-    }
-  }, []);
-
+const PokemonCard = ({ pokemon }) => {
   // Vérification de l'ID pour l'afficher comme sur le pokédex officiel sous la forme No.001 - No.010 - No.100
 
-  // Traduction des pokémons en français qui sont en anglais exclusivement
-
   return (
-    <Link key={pokemon.name} to={`/le-pokemon/${pokemon.name}`}>
+    <Link key={pokemon.nom} to={`/le-pokemon/${pokemon.nom}`}>
       <div className="rounded-lg transform bg-slate-200 hover:bg-slate-300 transition duration-500 hover:scale-110 py-4">
-        <p>No.{index}</p>
-        {index && (
+        <p>No.{pokemon.id}</p>
+        {pokemon.id && (
           <img
-            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${index}.png`}
+            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.id}.png`}
             alt=""
             className="m-auto"
           />
         )}
-        <p className="capitalize">{TranslationNames[i].french}</p>
+        <p className="capitalize">{pokemon.nom}</p>
       </div>
     </Link>
   );
