@@ -19,10 +19,10 @@ export default function SuivantPokemon({ pokemonChosen }) {
         to={`/le-pokemon/${nextPokemon.nom}`}
         onClick={changePokemon}
       >
-        <div className="flex space-x-2 justify-center">
+        <div className="flex space-x-2 justify-center items-center">
           <span className="text-white">No.{nextPokemon.id} </span>
           <span>{nextPokemon.nom} </span>
-          <img src={next} className="w-[1.5vw] h-[1.5vw] mt-[0.20vw]" alt="" />
+          <img src={next} className="w-[1.5vw] h-[1.5vw] " alt="" />
         </div>
       </Link>
     );

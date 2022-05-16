@@ -19,8 +19,8 @@ export default function PrecedentPokemon({ pokemonChosen }) {
         to={`/le-pokemon/${previousPokemon.nom}`}
         onClick={changePokemon}
       >
-        <div className="flex space-x-2 justify-center">
-          <img src={back} className="w-[1.5vw] h-[1.5vw] mt-[0.20vw]" alt="" />
+        <div className="flex space-x-2 justify-center items-center">
+          <img src={back} className="w-[1.5vw] h-[1.5vw]" alt="" />
           <span className="text-white">No.{previousPokemon.id} </span>
           <span>{previousPokemon.nom}</span>
         </div>
