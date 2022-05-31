@@ -3,7 +3,7 @@ import React from "react";
 export default function TypePokemon({ pokemonChosen }) {
   return (
     <div>
-      <span>Type(s)</span>
+      <span className="text-[1.25vw]">Type(s)</span>
       <div className="flex flex-row">
         {pokemonChosen.type.map((type) => {
           switch (type.nom) {

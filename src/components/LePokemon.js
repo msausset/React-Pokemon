@@ -74,9 +74,8 @@ export default function LePokemon() {
           {/* Stats de base Pokémon */}
 
           <div className="row-span-3">
-            {/*   <div className="ml-5 text-[1vw]">Stats de base</div>
-            <StatsPokemon pokemonChosen={pokemonChosen.stats} /> */}
-            UN TEXTE ICI
+            <div className="ml-5 text-[1vw]">Stats de base</div>
+            <StatsPokemon pokemonChosen={pokemonChosen.stats} />
           </div>
 
           {/* Types Pokémon */}

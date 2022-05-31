@@ -11,17 +11,17 @@ export default function navbar() {
       <div className="flex m-auto w-1/5">
         <Link
           to="/"
-          className="rounded-full hover:underline hover:bg-red-600 hover:text-white ease-in duration-300 flex-auto"
+          className="rounded-full hover:underline hover:bg-yellow-600 hover:text-white ease-in duration-300 flex-auto"
         >
-          <img alt="" className="w-5 h-5 inline" src={pokemon_1} />
-          <p>Accueil</p>
+          <img alt="" className="w-[2vw] h-[2vw] inline" src={pokemon_1} />
+          <p className="text-[1.5vw]">Accueil</p>
         </Link>
         <Link
           to="/pokemon"
           className="rounded-full hover:underline hover:bg-blue-600 hover:text-white ease-in duration-300 flex-auto"
         >
-          <img alt="" className="w-4 h-4 inline" src={pokemon_2} />
-          <p>Pokémon</p>
+          <img alt="" className="w-[2vw] h-[2vw] inline" src={pokemon_2} />
+          <p className="text-[1.5vw]">Pokémon</p>
         </Link>
       </div>
     </nav>

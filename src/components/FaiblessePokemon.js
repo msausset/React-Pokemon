@@ -3,7 +3,7 @@ import React from "react";
 export default function FaiblessePokemon({ pokemonChosen }) {
   return (
     <div>
-      <span>Faiblesse(s)</span>
+      <span className="text-[1.25vw]">Faiblesse(s)</span>
       <div className="flex flex-row flex-wrap">
         {/* Map sur les faiblesses du Pokémon choisi avec un background-color différent en fonction du type (switch) */}
 

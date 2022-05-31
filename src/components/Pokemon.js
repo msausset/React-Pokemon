@@ -8,7 +8,7 @@ export default function Pokemon() {
   return (
     <div className="bg-white bg-[url('../src/images/container_bg.png')] m-auto w-2/3 min-h-screen">
       <div className="bg-white w-2/3 m-auto py-5">
-        <div className="grid grid-cols-4 gap-4 m-3 text-center text-xs">
+        <div className="grid grid-cols-4 gap-4 m-3 text-center text-[1vw]">
           {Pokemons &&
             Pokemons.map((pokemon) => {
               return <PokemonCard pokemon={pokemon} key={pokemon.nom} />;
